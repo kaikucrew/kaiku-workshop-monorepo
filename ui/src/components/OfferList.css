@@ -1,0 +1,250 @@
+/* ============================================================================
+   OfferList Component Styles
+   ============================================================================ */
+
+.offer-list-container {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* ============================================================================
+   Loading State
+   ============================================================================ */
+
+.offer-list-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.offer-list-loading p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+/* ============================================================================
+   Empty State
+   ============================================================================ */
+
+.offer-list-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.offer-list-empty p {
+  color: #6b7280;
+  font-size: 1.125rem;
+}
+
+/* ============================================================================
+   Responsive Grid Layout
+   Mobile-first approach: single column on mobile, multi-column on larger screens
+   ============================================================================ */
+
+.offer-list-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr; /* Single column on mobile */
+}
+
+/* Tablet: 2 columns (640px+) */
+@media (min-width: 640px) {
+  .offer-list-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 columns (1024px+) */
+@media (min-width: 1024px) {
+  .offer-list-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Large Desktop: 4 columns (1536px+) */
+@media (min-width: 1536px) {
+  .offer-list-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ============================================================================
+   Offer Card Styles
+   ============================================================================ */
+
+.offer-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.offer-card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+}
+
+.offer-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.offer-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.offer-card-description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.offer-card-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f3f4f6;
+}
+
+.offer-card-price {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.offer-card-supplier {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* ============================================================================
+   Action Buttons
+   ============================================================================ */
+
+.offer-card-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.offer-card-button {
+  flex: 1;
+  min-width: 70px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  /* Touch-friendly minimum size (44x44px) */
+  min-height: 44px;
+}
+
+.offer-card-button:hover {
+  transform: translateY(-1px);
+}
+
+.offer-card-button:active {
+  transform: translateY(0);
+}
+
+.offer-card-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* View button - primary blue */
+.offer-card-button-view {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.offer-card-button-view:hover {
+  background-color: #2563eb;
+}
+
+/* Edit button - secondary gray */
+.offer-card-button-edit {
+  background-color: #6b7280;
+  color: white;
+}
+
+.offer-card-button-edit:hover {
+  background-color: #4b5563;
+}
+
+/* Delete button - danger red */
+.offer-card-button-delete {
+  background-color: #ef4444;
+  color: white;
+}
+
+.offer-card-button-delete:hover {
+  background-color: #dc2626;
+}
+
+/* ============================================================================
+   Responsive Adjustments for Mobile
+   ============================================================================ */
+
+@media (max-width: 639px) {
+  .offer-list-container {
+    padding: 0.75rem;
+  }
+
+  .offer-card {
+    padding: 1rem;
+  }
+
+  .offer-card-title {
+    font-size: 1.125rem;
+  }
+
+  .offer-card-actions {
+    flex-direction: column;
+  }
+
+  .offer-card-button {
+    width: 100%;
+  }
+}

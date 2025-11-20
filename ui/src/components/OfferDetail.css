@@ -1,0 +1,348 @@
+/* ============================================================================
+   OfferDetail Component Styles
+   Modal/Side Panel for displaying detailed offer information
+   ============================================================================ */
+
+/* Backdrop */
+.offer-detail-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9000;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Main Detail Container */
+.offer-detail {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  max-width: 42rem;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   Header
+   ============================================================================ */
+
+.offer-detail__header {
+  padding: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.offer-detail__title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  line-height: 1.5;
+}
+
+.offer-detail__close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.offer-detail__close-button:hover:not(:disabled) {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+.offer-detail__close-button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.offer-detail__close-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================================================
+   Body
+   ============================================================================ */
+
+.offer-detail__body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Field Styles */
+.offer-detail__field {
+  margin-bottom: 1.5rem;
+}
+
+.offer-detail__field:last-child {
+  margin-bottom: 0;
+}
+
+.offer-detail__label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+}
+
+.offer-detail__value {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #111827;
+}
+
+/* Title Value - Larger and bold */
+.offer-detail__value--title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Description Value - Preserve whitespace and line breaks */
+.offer-detail__value--description {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+}
+
+/* Price Value - Highlighted */
+.offer-detail__value--price {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+/* Timestamp Value - Smaller and muted */
+.offer-detail__value--timestamp {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* ID Value - Monospace font */
+.offer-detail__value--id {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.875rem;
+  color: #6b7280;
+  word-break: break-all;
+}
+
+/* Timestamps Grid */
+.offer-detail__timestamps {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ============================================================================
+   Footer
+   ============================================================================ */
+
+.offer-detail__footer {
+  padding: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Action Buttons */
+.offer-detail__button {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.375rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, transform 0.1s;
+  min-width: 5rem;
+}
+
+.offer-detail__button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.offer-detail__button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.offer-detail__button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.offer-detail__button:focus {
+  outline: 2px solid;
+  outline-offset: 2px;
+}
+
+/* Close Button - Secondary */
+.offer-detail__button--close {
+  background-color: white;
+  color: #374151;
+  border-color: #d1d5db;
+}
+
+.offer-detail__button--close:hover:not(:disabled) {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.offer-detail__button--close:focus {
+  outline-color: #6b7280;
+}
+
+/* Edit Button - Primary */
+.offer-detail__button--edit {
+  background-color: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+}
+
+.offer-detail__button--edit:hover:not(:disabled) {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+
+.offer-detail__button--edit:focus {
+  outline-color: #3b82f6;
+}
+
+/* Delete Button - Danger */
+.offer-detail__button--delete {
+  background-color: #ef4444;
+  color: white;
+  border-color: #ef4444;
+}
+
+.offer-detail__button--delete:hover:not(:disabled) {
+  background-color: #dc2626;
+  border-color: #dc2626;
+}
+
+.offer-detail__button--delete:focus {
+  outline-color: #ef4444;
+}
+
+/* ============================================================================
+   Responsive Design
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .offer-detail-backdrop {
+    padding: 0;
+    align-items: flex-start;
+  }
+
+  .offer-detail {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    min-height: 100vh;
+  }
+
+  .offer-detail__header,
+  .offer-detail__body,
+  .offer-detail__footer {
+    padding: 1rem;
+  }
+
+  .offer-detail__title {
+    font-size: 1.25rem;
+  }
+
+  .offer-detail__timestamps {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .offer-detail__footer {
+    flex-direction: column-reverse;
+  }
+
+  .offer-detail__button {
+    width: 100%;
+  }
+}
+
+/* ============================================================================
+   Loading State
+   ============================================================================ */
+
+.offer-detail__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+}
+
+.offer-detail__spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top-color: #3b82f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.offer-detail__loading-text {
+  color: #6b7280;
+  font-size: 1rem;
+}
