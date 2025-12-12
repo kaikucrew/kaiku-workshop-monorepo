@@ -2,6 +2,18 @@
 
 A full-stack TypeScript application for managing offers and suppliers. Built as a monorepo with a React frontend and Express API backend, this system provides a complete CRUD interface for creating, viewing, updating, and deleting offers with supplier associations.
 
+
+
+```
+┌─────────────────────┐
+│         UI          │  Vite & React
+└─────────────────────┘
+         ↕
+┌─────────────────────┐
+│        API          │  ExpressJS
+└─────────────────────┘
+```
+
 ## Purpose
 
 This application demonstrates a modern, type-safe approach to building full-stack applications with:
