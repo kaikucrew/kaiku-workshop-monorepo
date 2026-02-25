@@ -52,6 +52,18 @@ export class SupplierRepository {
     });
   }
 
+  create(data: { name: string; email: string; phone?: string }): Supplier {
+    const supplier: Supplier = {
+      id: uuidv4(),
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
+      createdAt: new Date(),
+    };
+    this.suppliers.set(supplier.id, supplier);
+    return supplier;
+  }
+
   // Method to get supplier IDs for seeding offers
   getSupplierIds(): string[] {
     return Array.from(this.suppliers.keys());

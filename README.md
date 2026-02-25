@@ -51,6 +51,22 @@ npm run dev:api  # API on http://localhost:3001
 
 The UI will be available at `http://localhost:3000` and will proxy API requests to `http://localhost:3001`.
 
+### Authentication
+
+The app uses a shared API key for frontend/backend authentication. Both sides must be configured with the same key.
+
+1. Copy the example env files:
+```bash
+cp api/.env.example api/.env
+cp ui/.env.example ui/.env
+```
+
+2. Set the same key in both files:
+   - `api/.env`: `API_AUTH_KEY=my-secret-key`
+   - `ui/.env`: `VITE_AUTH_KEY=my-secret-key`
+
+If `API_AUTH_KEY` is not set on the backend, authentication is skipped (useful for local development).
+
 ### Testing
 
 Run tests for all workspaces:

@@ -26,6 +26,14 @@ export interface Supplier {
 // Validation Schemas (Zod)
 // ============================================================================
 
+export const CreateSupplierSchema = z.object({
+  name: z.string().min(1).max(200),
+  email: z.string().email(),
+  phone: z.string().optional(),
+});
+
+export type CreateSupplierDTO = z.infer<typeof CreateSupplierSchema>;
+
 export const CreateOfferSchema = z.object({
   title: z.string().min(1).max(200),
   description: z.string().min(1).max(1000),

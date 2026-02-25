@@ -1,5 +1,5 @@
 import { SupplierRepository } from '../repositories/SupplierRepository.js';
-import { Supplier } from '../types.js';
+import { Supplier, CreateSupplierDTO } from '../types.js';
 
 export class NotFoundError extends Error {
   constructor(message: string) {
@@ -21,5 +21,9 @@ export class SupplierService {
       throw new NotFoundError(`Supplier with id ${id} not found`);
     }
     return supplier;
+  }
+
+  createSupplier(data: CreateSupplierDTO): Supplier {
+    return this.supplierRepository.create(data);
   }
 }

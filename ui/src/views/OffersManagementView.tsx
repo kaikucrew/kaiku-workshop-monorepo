@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from 'react'
-import type { Offer, OfferFormData } from '@/types'
+import type { Offer, OfferFormData, CreateSupplierData } from '@/types'
 import {
   useOffers,
   useCreateOffer,
   useUpdateOffer,
   useDeleteOffer,
   useSuppliers,
+  useCreateSupplier,
   useNotification,
 } from '@/hooks'
 import {
@@ -14,10 +15,11 @@ import {
   OfferDetail,
   SearchFilter,
   ConfirmDialog,
+  SupplierForm,
 } from '@/components'
 import './OffersManagementView.css'
 
-type ViewMode = 'list' | 'create' | 'edit' | 'detail'
+type ViewMode = 'list' | 'create' | 'edit' | 'detail' | 'create-supplier'
 
 interface ViewState {
   mode: ViewMode
@@ -47,6 +49,7 @@ export const OffersManagementView: React.FC = () => {
   const createOfferMutation = useCreateOffer()
   const updateOfferMutation = useUpdateOffer()
   const deleteOfferMutation = useDeleteOffer()
+  const createSupplierMutation = useCreateSupplier()
   const { showSuccess, showError } = useNotification()
 
   // Filter offers based on search and supplier filter
@@ -106,6 +109,23 @@ export const OffersManagementView: React.FC = () => {
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : 'Failed to create offer'
+      showError(errorMessage)
+      throw error
+    }
+  }
+
+  // ============================================================================
+  // Create Supplier Workflow
+  // ============================================================================
+
+  const handleCreateSupplier = async (data: CreateSupplierData) => {
+    try {
+      await createSupplierMutation.mutateAsync(data)
+      showSuccess('Supplier created successfully')
+      handleBackToList()
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to create supplier'
       showError(errorMessage)
       throw error
     }
@@ -212,6 +232,12 @@ export const OffersManagementView: React.FC = () => {
             >
               + Create Offer
             </button>
+            <button
+              className="offers-management-view__create-button"
+              onClick={() => setViewState({ mode: 'create-supplier' })}
+            >
+              + Create Supplier
+            </button>
           </div>
 
           <SearchFilter
@@ -260,6 +286,17 @@ export const OffersManagementView: React.FC = () => {
             onCancel={handleBackToList}
             loading={updateOfferMutation.isPending}
             suppliersLoading={suppliersLoading}
+          />
+        </div>
+      )}
+
+      {/* Create Supplier Form */}
+      {viewState.mode === 'create-supplier' && (
+        <div className="offers-management-view__modal">
+          <SupplierForm
+            onSubmit={handleCreateSupplier}
+            onCancel={handleBackToList}
+            loading={createSupplierMutation.isPending}
           />
         </div>
       )}

@@ -49,6 +49,15 @@ export interface OfferFormData {
 export interface CreateOfferData extends OfferFormData {}
 
 /**
+ * Data required to create a new supplier
+ */
+export interface CreateSupplierData {
+  name: string
+  email: string
+  phone?: string
+}
+
+/**
  * Data required to update an existing offer
  * All fields are required in the UI form
  */
