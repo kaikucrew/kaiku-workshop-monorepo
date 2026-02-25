@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { errorHandler } from './middleware/index.js'
+import { errorHandler, authMiddleware } from './middleware/index.js'
 import { OfferRepository } from './repositories/OfferRepository.js'
 import { SupplierRepository } from './repositories/SupplierRepository.js'
 import { OfferService } from './services/OfferService.js'
@@ -34,6 +34,7 @@ app.get('/', (_req: Request, res: Response) => {
 })
 
 // Register API routes
+app.use('/api', authMiddleware)
 app.use('/api', createOfferRouter(offerService))
 app.use('/api', createSupplierRouter(supplierService))
 

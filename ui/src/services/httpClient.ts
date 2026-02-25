@@ -45,6 +45,13 @@ async function parseError(response: Response): Promise<ApiErrorException> {
  * Provides fetch functions that can be used with useQuery and useMutation
  */
 
+function getHeaders(): Record<string, string> {
+  const headers: Record<string, string> = { 'Content-Type': 'application/json' }
+  const authKey = import.meta.env.VITE_AUTH_KEY
+  if (authKey) headers['x-api-key'] = authKey
+  return headers
+}
+
 /**
  * GET request
  */
@@ -54,9 +61,7 @@ export async function apiGet<T>(endpoint: string): Promise<T> {
   try {
     const response = await fetch(url, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers: getHeaders()
     })
 
     if (!response.ok) {
@@ -94,9 +99,7 @@ export async function apiPost<T>(endpoint: string, data?: unknown): Promise<T> {
   try {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: getHeaders(),
       body: data ? JSON.stringify(data) : undefined
     })
 
@@ -135,9 +138,7 @@ export async function apiPut<T>(endpoint: string, data?: unknown): Promise<T> {
   try {
     const response = await fetch(url, {
       method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: getHeaders(),
       body: data ? JSON.stringify(data) : undefined
     })
 
@@ -176,9 +177,7 @@ export async function apiDelete<T>(endpoint: string): Promise<T> {
   try {
     const response = await fetch(url, {
       method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json'
-      }
+      headers: getHeaders()
     })
 
     if (!response.ok) {
